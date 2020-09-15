@@ -1,0 +1,43 @@
+Cheat sheet for web scraping
+
+robertchu @ 2019/4/5
+email:robertchu921@gmail.com
+
+[Presage]
+Some website would detect and block the crawler, since 1)bad scraping would harm the performance of the site, 2) websites don't want to open their data access, by the following pattern:
+-Unusual traffic, high download rate especially from a single clent or IP address within a short time span.
+-Repetitive tasks performed on the website, whereas human user won't perform the same repetitive tasks all the time.
+
+
+[Basic function utility]
+
+
+[Avoid being blocked by website]
+
+1)Rotate proxies and IP
+-With help of free-proxy-list, which updates every 10 minutes, scrape the available IP address and Port number, which support https as we are going to test it on an https website.
+-Then, rotate through the cycle of the proxies scraped as the proxies parameters in requests.get()
+
+*However, sometime the proxy list may contain 0 https-supporting pair, which would cause StopIteration in later use. Thus, we have to check whether the set() we get are empty or not.
+
+2)Rotate user agent
+-Every request made from a web browser contains a user-agent header, thus, using the same one consistently leads to being detected as a bot.
+-With help of a list of latest user agent strings of some popular browsers, we can rotate the user agent, say, random choose one from the list.
+
+3)try-except-else
+-requests.get() would not always response well and OK, say, sometimes connection error occurs including proxy error, time out, server not response. Thus, we have to handle these exception and then try requests.get() again for MAX_RETRIES time.
+-Between retries, making the requests.get() call after time.sleep() is a recommended option to delay our requests, whereas a bot would consistently requests.get() without halting.
+
+4)Set timeout to avoid long waiting when connection timeout
+
+5)*(not sure)set 'Connection':'close' in headers when requests.get()
+-may due to the fact that we send too many request in a short span(may be viewed as in/through the same TCP connection), thus, we close the connection every time we request.
+
+6)*(not sure)set verify=False in requests.get()
+-suggested from others when dealing with errno110
+
+
+[Reference]
+1)ScrapeHero:'https://www.scrapehero.com/how-to-prevent-getting-blacklisted-while-scraping/'
+2)Free-proxy-list:'https://free-proxy-list.net/'
+3)popular browser list:'https://developers.whatismybrowser.com/useragents/explore/'
