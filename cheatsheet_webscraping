@@ -1,7 +1,6 @@
 Cheat sheet for web scraping
 
-robertchu @ 2019/4/5
-email:robertchu921@gmail.com
+@ 2019/4/5
 
 [Presage]
 Some website would detect and block the crawler, since 1)bad scraping would harm the performance of the site, 2) websites don't want to open their data access, by the following pattern:
