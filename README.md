@@ -1,7 +1,7 @@
 # Cheat-Sheet-for-Web-Crawler
-# Fake News Classification by Kaggle Competition
 
 This is a cheat-sheet I recorded for my first attempt of web-scraping.
+
 Some tips to deal with the issues to make the scraper stay active.
 
 
